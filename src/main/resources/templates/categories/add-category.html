@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Employee</title>
+    <style>
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 1em;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        form div {
+            margin-bottom: 1em;
+        }
+        form div label {
+            margin-bottom: .5em;
+            color: #333333;
+        }
+        form div input, form div select {
+            border: 1px solid #CCCCCC;
+            padding: .5em;
+            font-size: 1em;
+            width: 100%;
+        }
+        form div button {
+            padding: 0.7em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        form div button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Add New Employee</h1>
+<form th:action="@{/employees/add}" th:object="${employee}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="gt">GT:</label>
+        <input type="text" id="gt" th:field="*{gt}" required>
+    </div>
+    <div>
+        <label for="noisinh">Noisinh:</label>
+        <input type="text" id="noisinh" th:field="*{noisinh}" required>
+    </div>
+    <div>
+        <label for="maphong">maphong:</label>
+        <input type="text" id="maphong" th:field="*{maphong}" required>
+    </div>
+    <div>
+        <label for="luong">Luong:</label>
+        <input type="number" id="luong" th:field="*{luong}" required>
+    </div>
+    <div>
+        <label for="phongban">Phong ban:</label>
+        <select id="phongban" th:field="*{phongban.id}" required>
+            <option th:each="pb : ${phongbans}" th:value="${pb.id}" th:text="${pb.name}"></option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit">Add Employee</button>
+    </div>
+</form>
+</body>
+</html>
